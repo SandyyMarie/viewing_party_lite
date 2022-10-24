@@ -14,6 +14,8 @@ RSpec.describe 'Register Page' do
       expect(page.has_field?).to eq(true)
       fill_in 'Name:', with: 'Sandy M'
       fill_in 'Email:', with: 'Sandy@google.com'
+      fill_in 'Password:', with: 'Password1234!'
+      fill_in 'Confirm password:', with: 'Password1234!'
       click_button('Register')
 
       expect(current_path).to eq(user_path(@users_1.last.id + 1))
