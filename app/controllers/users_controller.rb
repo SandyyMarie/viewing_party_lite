@@ -16,6 +16,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       redirect_to user_path(@user)
+    elsif params[:password] != params[:password_confirmation]
+      flash[:error] = "Password does not match"
+      redirect_to '/register/new'
+
     else
       redirect_to '/register/new'
     end
