@@ -13,9 +13,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to user_path(@user)
+    incoming_user = user_params
+    incoming_user[:email] = incoming_user[:email].downcase
+    user = User.create(incoming_user)
+    if user.save
+      flash[:success] = "Welcome, #{user.name}!"
+      redirect_to user_path(user)
     else
       redirect_to '/register/new'
     end
