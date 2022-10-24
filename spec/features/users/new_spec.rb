@@ -15,7 +15,7 @@ RSpec.describe 'Register Page' do
       fill_in 'Name:', with: 'Sandy M'
       fill_in 'Email:', with: 'Sandy@google.com'
       fill_in 'Password:', with: 'abc123'
-      # fill_in 'Confirm Password: ', with: 'abc123'
+      fill_in 'Confirm Password:', with: 'abc123'
 
       click_button('Register')
 
@@ -34,5 +34,17 @@ RSpec.describe 'Register Page' do
       expect(current_path).to eq('/register/new')
     end
 
+    it 'redirects to /register/new if passwords do not match' do
+      visit '/register/new'
+
+      expect(page.has_field?).to eq(true)
+      fill_in 'Name:', with: 'Sandy M'
+      fill_in 'Email:', with: 'Sandy@google.com'
+      fill_in 'Password:', with: 'abc123'
+      fill_in 'Confirm Password:', with: '321cba'
+      click_button('Register')
+
+      expect(current_path).to eq('/register/new')
+    end
   end
 end

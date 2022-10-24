@@ -20,6 +20,11 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome, #{user.name}!"
       redirect_to user_path(user)
     else
+      if incoming_user[:password] != incoming_user[:password_confirmation]
+        flash[:error] = "Password don't match"
+      end
+      
+      flash[:error] = "Sorry, something went wrong" #how to add specifically what went wrong?
       redirect_to '/register/new'
     end
   end
@@ -27,6 +32,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end
