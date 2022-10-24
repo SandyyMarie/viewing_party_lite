@@ -21,4 +21,5 @@ RSpec.describe User, type: :model do
     expect(user).to_not have_attribute(:password)
     expect(user.password_digest).to_not eq('password123')
   end
+
 end
