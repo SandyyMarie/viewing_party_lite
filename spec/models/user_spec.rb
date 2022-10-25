@@ -7,8 +7,8 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of :name }
     it { should validate_presence_of :email }
     it { should validate_uniqueness_of(:email)}
-    it { should validate_presence_of(:password)} # Can also be :password_digest-- Remember, bcrypt will check out passwords, and store it as `password_digest`
-    it { should have_secure_password}
+    it { should validate_presence_of(:password_digest)} # doesnt need to be here technically with have_secure_password
+    it { should have_secure_password }
   end
 
   describe 'relationships' do

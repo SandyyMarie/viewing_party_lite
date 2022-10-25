@@ -22,9 +22,10 @@ class UsersController < ApplicationController
     else
       if incoming_user[:password] != incoming_user[:password_confirmation]
         flash[:error] = "Password don't match"
+      else
+        flash[:error] = "Sorry, something went wrong" #how to add specifically what went wrong?
       end
-      
-      flash[:error] = "Sorry, something went wrong" #how to add specifically what went wrong?
+  
       redirect_to '/register/new'
     end
   end
