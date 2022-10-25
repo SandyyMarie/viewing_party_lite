@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   # get '/', to: 'landings#index' is the same?
   root 'landings#index'
-
+  get '/login', to: 'users#login_form'
+  
   resources :users, only: %i[show create], path: 'dashboard' do
     # post '/discover', to: 'movies#index' #discover controller with search, that searches user from there
     resources :discover, only: :index
